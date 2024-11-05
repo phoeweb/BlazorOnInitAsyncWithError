@@ -3,11 +3,13 @@
 <PageTitle>Counter</PageTitle>
 
 <h1>Counter</h1>
-
-<p role="status">Current count: @currentCount</p>
+<p role="status">Current counter: @currentCount</p>
+<p role="status">Current error: @Error</p>
 
 @code {
     private int currentCount = 0;
+
+    private string? Error = string.Empty;
 
     private async Task IncrementCount()
     {
@@ -27,7 +29,7 @@
         }
         catch (Exception ex)
         {
-            Console.WriteLine(ex.Message);
+            Error = ex.Message;
         }
     }
 
