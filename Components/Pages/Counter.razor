@@ -11,21 +11,24 @@
 
     private async Task IncrementCount()
     {
-        await Task.Delay(1000);
+        await Task.Delay(5000);
         currentCount++;
 
-        if (currentCount == 5)
-        {
-            throw new InvalidOperationException("Bad Exception");
-        }
+        throw new InvalidOperationException("Bad Exception");
     }
 
     protected override async Task OnInitializedAsync()
     {
         // this does nothing. So we do not call it.
         //return base.OnInitializedAsync();
-
-        await IncrementCount();
+        try 
+        {
+            await IncrementCount();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
     }
 
 }
