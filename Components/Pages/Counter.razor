@@ -1,0 +1,31 @@
+﻿@page "/counter"
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+
+@code {
+    private int currentCount = 0;
+
+    private async Task IncrementCount()
+    {
+        await Task.Delay(1000);
+        currentCount++;
+
+        if (currentCount == 5)
+        {
+            throw new InvalidOperationException("Bad Exception");
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        // this does nothing. So we do not call it.
+        //return base.OnInitializedAsync();
+
+        await IncrementCount();
+    }
+
+}
